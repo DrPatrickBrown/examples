@@ -1,31 +1,47 @@
 import React, { PureComponent } from "react";
+import PropTypes from 'prop-types';
 
-// <YearInput years="..." epoch=" " handleChange="...(years, epoch)">
-//
-// The YearInput component inputs a single AD or BC year.
-// YearInput contains two Controlled Inputs, an input for number of years, and a select with options 'AD' and 'BC' for the epoch.
+// A Controlled Input which accepts a single year held as a number of years and "AD" or "BC"
+// 
 // When a year is defined the component displays the historic period the year falls within, 
 // e.g. 1000BC is in the Iron Age period, 1248AD is the Medieval period
 // 
 // The earliest year that should be accepted is the start of the Bronze Age period, the most recent that can be accepted is the end of the Post Medieval period.
+// onChange passes the value of 
+//      {
+// 			years: undefined,
+// 			epoch: "AD"
+// 		}
+// if its state is not a valid year
 
-class YearInput extends PureComponent {
-	constructor(props) {
-		super(props);
+class HistoricYear extends PureComponent {
+	propTypes = {
+		value: PropTypes.shape({
+			years: PropTypes.number,
+			epoch: PropTypes.oneOf(['AD', 'BC'])
+		}),
+		onChange: PropTypes.function
+	};
 
-		this.lookUpPeriod = this.lookUpPeriod.bind(this);
-		this.handleYearChange = this.handleYearChange.bind(this);
-		this.handleEpochChange = this.handleEpochChange.bind(this);
-
-		let initialPeriod = this.lookUpPeriod(this.props.years, this.props.epoch);
-		this.state = {
-			years: this.props.years,
-			epoch: this.props.epoch,
-			period: initialPeriod
+	defaultProps = {
+		value: {
+			years: undefined,
+			epoch: "AD"
 		}
 	}
 
-	lookUpPeriod(years, epoch) {
+	constructor(props) {
+		super(props);
+
+		let period = this.lookUpPeriod(this.props.value.years, this.props.value.epoch);
+		this.state = {
+			years: this.props.value.years,
+			epoch: this.props.value.epoch,
+			period: period
+		}
+	}
+
+	lookUpPeriod = (years, epoch) => {
 		if (!epoch || !years) {
 			return undefined;
 		}
@@ -45,10 +61,10 @@ class YearInput extends PureComponent {
 		const postMedievalStart = 1500;
 		const postMedievalEnd = 1799;
 
-		if ((this.state.epoch === 'BC') && (years > bronzeAgeStart)) {
+		if ((epoch === 'BC') && (years > bronzeAgeStart)) {
 			return "Too early"
 		}
-		if ((this.state.epoch === 'AD') && (years > postMedievalEnd)) {
+		if ((epoch === 'AD') && (years > postMedievalEnd)) {
 			return "Too late"
 		}
 		if ((epoch === "BC") && (years <= bronzeAgeStart) && (years >= bronzeAgeEnd)) {
@@ -74,22 +90,25 @@ class YearInput extends PureComponent {
 		}
 	}
 
-	handleYearsChange(e) {
+	handleYearsChange = (e) => {
 		let newYears = parseInt(e.target.value);
-		let newPeriod = this.lookUpPeriod(newYears, this.state.epoch)
+		let newPeriod = undefined;
+
+		if (isNaN(newYears)) {
+			newYears = undefined;
+		} else {
+			newPeriod = this.lookUpPeriod(newYears, this.state.epoch)
+		}
 
 		this.setState({
 			years: newYears,
 			period: newPeriod
 		});
 
-		if (this.props.handleChange) {
-			// call the change handler passed by the parent 
-			this.props.handleChange(this.state.years, this.state.epoch);
-		}
+		this.callChangeHandlerProp();
 	}
 
-	handleEpochChange(e) {
+	handleEpochChange = (e) => {
 		let newEpoch = e.target.value;
 		let newPeriod = this.lookUpPeriod(this.state.years, newEpoch);
 
@@ -98,24 +117,36 @@ class YearInput extends PureComponent {
 			period: newPeriod
 		});
 
-		if (this.props.handleChange) {
-			// call an handler on the parent
-			this.props.handleChange(this.state.years, this.state.epoch);
+		this.callChangeHandlerProp();
+	}
+
+	// call the change handler provided by the parent 
+	callChangeHandlerProp = () => {
+		let newValue = {
+			years: undefined,
+			epoch: "AD"
 		}
+		if (this.state.years && (this.state.period !== "Too early") && (this.state.period !== "Too late")) {
+			newValue = {
+				years: this.state.years,
+				epoch: this.state.epoch
+			}
+		}
+		this.props.onChange(newValue);
 	}
 
 	render() {
 		return (
 			<span>
-				<input type="text" pattern="^\d{1,4}$" value={this.state.years} onchange="handleYearsChange(e)" />
-				<select value={this.state.epoch} onchange="handleEpochChange(e)">
+				<input type="text" pattern="^\d{1,4}$" maxlength="4" value={this.state.years} onChange={this.handleYearsChange} />
+				<select value={this.state.epoch} onChange={this.handleEpochChange}>
 					<option value="AD">AD</option>
 					<option value="BC">BC</option>
 				</select>
-				{this.state.period}
+				{this.state.period ? <div> period: {this.state.period} </div> : null}
 			</span>
 		);
 	}
 }
 
-export default YearInput;
+export default HistoricYear;
