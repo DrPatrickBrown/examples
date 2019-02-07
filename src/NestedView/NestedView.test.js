@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OneWayView from './OneWayView';
+import OneWayView from './NestedView';
 
 it('renders without crashing', () => {
 	const div = document.createElement('div');

@@ -7,12 +7,13 @@ class HomeView extends Component {
 		return (
 			<>
 				<p>
-					This React single page app uses React Router to provide navigation between example React components I have written.
+					This React single page app uses React Router to provide URL based navigation between example React components I have written.
 				</p>
 				<ul>
-					<li> The OneWay routed component demonstrates the nesting of Controlled Input components. </li>
-					<li> The Axios routed component demonstrates calling a Rest API using the Axios library. </li>
-					<li> The Redux routed component demonstrates sharing application state between non-nested components using the Redux library. </li>
+					<li> 'ControlledInput' demonstrates a component with controlled inputs.</li>
+					<li> 'Nested' demonstrates a parent component with child components. </li>
+					<li> 'Axios' demonstrates a component which calls the SharePoint REST API using the Axios library. </li>
+					<li> 'Redux' demonstrates the sharing of application state between non-nested components using the Redux library. </li>
 				</ul>
 				<p>
 					The source code for these components, including unit and integration tests, is available at:
