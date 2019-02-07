@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import HistoricYear from "../ControlledInputView/HistoricYear.jsx";
 import PropTypes from 'prop-types';
 
-// HistoricDateRange is a ControlledInput that accepts a year range, defined as a fromYear and a toYear.
+// HistoricDateRange is a component that accepts a year range, defined as a fromYear and a toYear, each implemnted by a child component.
 //
 // HistoricDateRange displays a warning if toYear is earlier than fromYear.
 
