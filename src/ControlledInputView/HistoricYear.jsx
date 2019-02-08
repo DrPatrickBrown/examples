@@ -135,7 +135,7 @@ class HistoricYear extends PureComponent {
 					<option value="AD">AD</option>
 					<option value="BC">BC</option>
 				</select>
-				{this.state.period ? <span> period: {this.state.period} </span> : null}
+				{this.state.period ? <span id="period"> period: {this.state.period} </span> : null}
 			</span>
 		);
 	}
