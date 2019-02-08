@@ -12,7 +12,7 @@ class App extends Component {
 		return (
 			<HashRouter>
 				<div>
-					<h1> React Examples by Patrick Brown </h1>
+					<h2> React Examples by Patrick Brown </h2>
 					<ul className="menu" >
 						<li> <NavLink exact to="/"> Home </NavLink> </li>
 						<li> <NavLink to="/controlled-input" > Controlled-Input </NavLink> </li>

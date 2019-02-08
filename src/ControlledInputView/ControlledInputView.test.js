@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ControlledInputView from './HomeView';
+import ControlledInputView from './ControlledInputView';
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
 	const div = document.createElement('div');
 	ReactDOM.render( < ControlledInputView / > , div);
 	ReactDOM.unmountComponentAtNode(div);

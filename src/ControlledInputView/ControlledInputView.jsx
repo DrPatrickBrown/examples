@@ -37,7 +37,7 @@ class ControlledInputView extends Component {
 				<br />
 
 				<div>
-					Year passed via onChange event of HistoricYear component is: {this.state.year === undefined ? null : this.state.year}
+					The year passed by the most recent onChange event of the component above was: {this.state.year === undefined ? null : this.state.year}
 				</div>
 			</>
 		);

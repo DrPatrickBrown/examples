@@ -34,8 +34,12 @@ class HistoricYear extends PureComponent {
 
 	lookUpPeriod = (years, epoch) => {
 		let yearsInt = parseInt(years);
+		// can't assign a period for a non number
 		if (isNaN(yearsInt)) {
-			// the years input is empty
+			return undefined;
+		}
+		// don't assign a period for a negative number 
+		if (yearsInt < 0) {
 			return undefined;
 		}
 
@@ -126,7 +130,7 @@ class HistoricYear extends PureComponent {
 	render() {
 		return (
 			<span>
-				<input type="text" pattern="^\d{1,4}$" maxLength="4" value={this.state.years} onChange={this.handleYearsChange} />
+				<input type="text" pattern="^\d{1,4}$" title="A whole number up to 4 digits long." maxLength="4" value={this.state.years} onChange={this.handleYearsChange} mandatory={this.props.mandatory} />
 				<select value={this.state.epoch} onChange={this.handleEpochChange}>
 					<option value="AD">AD</option>
 					<option value="BC">BC</option>
@@ -139,7 +143,12 @@ class HistoricYear extends PureComponent {
 
 HistoricYear.propTypes = {
 	signedYear: PropTypes.number,  // -ve for a BC year, +ve for an AD year
-	onChange: PropTypes.func       // passes the updated signedYear
+	onChange: PropTypes.func,      // passes the updated signedYear
+	mandatory: PropTypes.string
 };
+
+HistoricYear.defaultProps = {
+	mandatory: "false"
+}
 
 export default HistoricYear;

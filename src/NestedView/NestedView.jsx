@@ -47,7 +47,7 @@ class OneWayView extends Component {
 				<br />
 
 				<div>
-					Range passed via onChange event of HistoricDateRange component is:
+					The range passed by the most recent onChange event from the component above was:
 					{this.state.range === null ? null : this.rangeToString()}
 				</div>
 
