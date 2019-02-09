@@ -40,7 +40,7 @@ class NestedView extends Component {
 				</p>
 
 				<div>
-					<HistoricDateRange fromYear={50} toYear={10} onChange={this.changeHandler}></HistoricDateRange>
+					<HistoricDateRange onChange={this.changeHandler}></HistoricDateRange>
 				</div>
 
 				<br />
