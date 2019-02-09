@@ -56,11 +56,14 @@ class HistoricDateRange extends PureComponent {
 
 	// call the change handler provided by the parent 
 	callOnChangeProp = (fromYear, toYear) => {
-		let newRange = {
-			fromYear: fromYear,
-			toYear: toYear
+		// if an onChange prop has been defined call it
+		if (this.props.onChange) {
+			let newRange = {
+				fromYear: fromYear,
+				toYear: toYear
+			}
+			this.props.onChange(newRange);
 		}
-		this.props.onChange(newRange);
 	}
 
 	render() {

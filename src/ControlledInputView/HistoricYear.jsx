@@ -112,19 +112,22 @@ class HistoricYear extends PureComponent {
 	// call the change handler provided by the parent 
 	// pass the year as a signed integer, with +ve indicating a AD year, and -ve a BC year.  
 	callOnChangeProp = (years, epoch) => {
-		let signedYear = undefined; // the value to be passed as parameter to the event handler
-		let yearsInt = parseInt(years);
-		if (isNaN(yearsInt)) {
-			// the years input is empty
-			signedYear = undefined;
-		} else {
-			if (epoch === "AD") {
-				signedYear = yearsInt;  // +ve indicates AD
+		// if an onChange prop has been defined call it
+		if (this.props.onChange) {
+			let signedYear = undefined; // the value to be passed as parameter to the event handler
+			let yearsInt = parseInt(years);
+			if (isNaN(yearsInt)) {
+				// the years input is empty
+				signedYear = undefined;
 			} else {
-				signedYear = -yearsInt; // -ve indicates BC
+				if (epoch === "AD") {
+					signedYear = yearsInt;  // +ve indicates AD
+				} else {
+					signedYear = -yearsInt; // -ve indicates BC
+				}
 			}
+			this.props.onChange(signedYear);
 		}
-		this.props.onChange(signedYear);
 	}
 
 	render() {
