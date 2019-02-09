@@ -53,7 +53,7 @@ test('user entering 1066 as a year, when epoch is AD, results in onChange prop b
 
 test('user selecting BC, when year is 1066, results in onChange prop being called with -1066', () => {
 	const mockOnChangeHandler = jest.fn();
-	const wrapper = shallow(< HistoricYear signedYear onChange={mockOnChangeHandler} />);
+	const wrapper = shallow(< HistoricYear signedYear={1066} onChange={mockOnChangeHandler} />);
 
 	const selectElement = wrapper.find('select');
 
