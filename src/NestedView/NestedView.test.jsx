@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import OneWayView from './OneWayView';
+import NestedView from './NestedView';
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
 	const div = document.createElement('div');
-	ReactDOM.render( < OneWayView / > , div);
+	ReactDOM.render( < NestedView / > , div);
 	ReactDOM.unmountComponentAtNode(div);
 });
