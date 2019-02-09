@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HistoricDateRange from "./HistoricDateRange.jsx";
 
-class OneWayView extends Component {
+class NestedView extends Component {
 	constructor(props) {
 		super(props);
 
@@ -41,7 +41,7 @@ class OneWayView extends Component {
 				</p>
 
 				<div>
-					<HistoricDateRange onChange={this.changeHandler}></HistoricDateRange>
+					<HistoricDateRange fromYear={-1000} toYear={-500} onChange={this.changeHandler}></HistoricDateRange>
 				</div>
 
 				<br />
@@ -56,4 +56,4 @@ class OneWayView extends Component {
 	}
 }
 
-export default OneWayView;
+export default NestedView;
