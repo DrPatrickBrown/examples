@@ -26,8 +26,7 @@ class NestedView extends Component {
 		return (
 			<>
 				<p>
-					This example is a parent component that contains sub-components.
-					It demonstrates the one-way flow of data from parent to child via props and the one-way flow of events from child to parent.
+					This example is a parent component containing child components.
 				</p>
 
 				<p>
@@ -41,7 +40,7 @@ class NestedView extends Component {
 				</p>
 
 				<div>
-					<HistoricDateRange onChange={this.changeHandler}></HistoricDateRange>
+					<HistoricDateRange fromYear={50} toYear={10} onChange={this.changeHandler}></HistoricDateRange>
 				</div>
 
 				<br />

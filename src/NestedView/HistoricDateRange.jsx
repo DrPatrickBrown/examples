@@ -11,17 +11,19 @@ class HistoricDateRange extends PureComponent {
 	constructor(props) {
 		super(props);
 
+		var message = this.getValidationWarning(this.props.fromYear, this.props.toYear)
+
 		this.state = {
 			fromYear: this.props.fromYear,
 			toYear: this.props.toYear,
-			warning: undefined
+			warning: message
 		}
 	}
 
 	// compare the 'from' year and 'to' year and return a warning message
 	// if there is a problem, or undefined if the range is valid 
 	getValidationWarning = (fromYear, toYear) => {
-		const toBeforeFromError = "'to' year is earlier than 'from' year"
+		const toBeforeFromError = "to year is earlier than from year"
 
 		if (toYear < fromYear) {
 			return toBeforeFromError;
@@ -68,13 +70,13 @@ class HistoricDateRange extends PureComponent {
 				<div>
 					<label>
 						from
-						<HistoricYear value={this.state.fromYear} onChange={this.handleFromYearChange}></HistoricYear>
+						<HistoricYear id="from" signedYear={this.state.fromYear} onChange={this.handleFromYearChange}></HistoricYear>
 					</label>
 				</div>
 				<div>
 					<label>
 						to
-					    <HistoricYear value={this.state.toYear} onChange={this.handleToYearChange}></HistoricYear>
+					    <HistoricYear id="to" signedYear={this.state.toYear} onChange={this.handleToYearChange}></HistoricYear>
 					</label>
 				</div>
 				{this.state.warning ? <div> warning: {this.state.warning} </div> : null}
