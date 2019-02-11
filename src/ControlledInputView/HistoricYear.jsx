@@ -132,14 +132,18 @@ class HistoricYear extends PureComponent {
 
 	render() {
 		return (
-			<span>
-				<input type="text" pattern="^\d{1,4}$" title="A whole number up to 4 digits long." maxLength="4" value={this.state.years} onChange={this.handleYearsChange} mandatory={this.props.mandatory} />
-				<select value={this.state.epoch} onChange={this.handleEpochChange}>
+			<div className="input-group">
+				<input type="text" pattern="^\d{1,4}$" title="A whole number up to 4 digits long." maxLength="4"
+					value={this.state.years} onChange={this.handleYearsChange} mandatory={this.props.mandatory}
+					aria-label="Number of years" className="form-control" />
+				<select value={this.state.epoch} onChange={this.handleEpochChange} aria-label="AD or BC" className="form-control">
 					<option value="AD">AD</option>
 					<option value="BC">BC</option>
 				</select>
-				{this.state.period ? <span id="period"> period: {this.state.period} </span> : null}
-			</span>
+				<span className="input-group-append">
+					<span className="input-group-text"> period: {this.state.period ? this.state.period : null} </span>
+				</span>
+			</div>
 		);
 	}
 }

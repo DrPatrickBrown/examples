@@ -5,16 +5,22 @@ class AxiosView extends Component {
 	render() {
 		return (
 			<>
-				<p>
-					This example is a container component that uses axios to perfom a GET request on a SharePoint list of technologies.
-					It displays the list using a nested functional component.
-				</p>
+				<div className="card bg-light p-2">
+					<h5 className="card-title"> An example React component that makes a REST API call. </h5>
+					<p className="card-text">
+						Below is a container component that uses the Axios library to read items from a SharePoint list via the SharePoint REST API.
+						The items are technologies I have used.
+					</p>
+					<p className="card-text">
+						The nested presentational component splits the items by technology family, displaying each family as a separate list within a Bootstrap card.
+						This use of multiple cards gives me an excuse to implement a fluid layout using the Bootstrap Grid.
+						On a phone the cards are stacked vertically, but on a tablet or pc the cards are shown three in a row.
+				    </p>
+				</div>
 
-				<p>
-					This technologies are those I have during my career, and demonstrate my ability to switch technologies.
-				</p>
-
-				<SkillsListContainer></SkillsListContainer>
+				<div>
+					<SkillsListContainer></SkillsListContainer>
+				</div>
 			</>
 		);
 	}

@@ -31,7 +31,6 @@ class SkillsListContainer extends Component {
 
 		axios.get(requestUrl, requestOptions)
 			.then((response) => {
-				console.log("inside axios then, response is ", response);
 				this.setState({
 					isLoading: false,
 					skillsList: response.data.value,
@@ -51,7 +50,7 @@ class SkillsListContainer extends Component {
 	render() {
 		return (
 			<div>
-				<h3>Technologies Pat has used</h3>
+				<h5>Technologies Pat has used</h5>
 				{this.state.isLoading ?
 					<Spinner></Spinner> : <SkillsListPresenter skills={this.state.skillsList} errorMessage={this.state.error}></SkillsListPresenter>}
 			</div>
