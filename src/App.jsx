@@ -12,15 +12,17 @@ class App extends Component {
 		return (
 			<HashRouter>
 				<div>
-					<h2> React Examples by Patrick Brown </h2>
-					<ul className="menu" >
-						<li> <NavLink exact to="/"> Home </NavLink> </li>
-						<li> <NavLink to="/controlled-input" > Controlled-Input </NavLink> </li>
-						<li> <NavLink to="/nested" > Nested </NavLink> </li>
-						<li> <NavLink to="/axios" > Axios </NavLink> </li>
-						<li> <NavLink to="/redux" > Redux </NavLink> </li>
-					</ul>
-					<div>
+					<nav className="navbar navbar-expand-lg navbar-dark bg-primary mb-2">
+						<NavLink exact to="/" className="navbar-brand">Pat's React Examples</NavLink>
+						<ul className="navbar-nav mr-auto" >
+							<li className="nav-item"> <NavLink exact to="/" className="nav-link"> Home </NavLink> </li>
+							<li className="nav-item"> <NavLink to="/controlled-input" className="nav-link"> Controlled-Input </NavLink> </li>
+							<li className="nav-item"> <NavLink to="/nested" className="nav-link"> Nested </NavLink> </li>
+							<li className="nav-item"> <NavLink to="/axios" className="nav-link"> Axios </NavLink> </li>
+							<li className="nav-item"> <NavLink to="/redux" className="nav-link"> Redux </NavLink> </li>
+						</ul>
+					</nav>
+					<div className="container-fluid">
 						<Route exact path="/" component={HomeView} />
 						<Route path="/controlled-input" component={ControlledInputView} />
 						<Route path="/nested" component={NestedView} />

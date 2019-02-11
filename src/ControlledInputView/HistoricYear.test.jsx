@@ -8,11 +8,10 @@ test('renders default props as an empty year with epoch of AD', () => {
 
 	const inputElement = wrapper.find('input');
 	const selectElement = wrapper.find('select');
-	const periodSpan = wrapper.find('span#period');
 
 	expect(inputElement.prop('value')).toBe("");
 	expect(selectElement.prop('value')).toBe("AD");
-	expect(periodSpan.exists()).toBe(false);
+	expect(wrapper.containsMatchingElement(<span className="input-group-text"> period: </span>)).toBe(true);
 });
 
 test('renders a signedYear prop of -100 as 100 BC iron age', () => {
@@ -20,12 +19,10 @@ test('renders a signedYear prop of -100 as 100 BC iron age', () => {
 
 	const inputElement = wrapper.find('input');
 	const selectElement = wrapper.find('select');
-	const periodSpan = wrapper.find('span#period');
 
 	expect(inputElement.prop('value')).toBe(100);
 	expect(selectElement.prop('value')).toBe("BC");
-	expect(periodSpan.exists()).toBe(true);
-	expect(wrapper.containsMatchingElement(<span id="period"> period: Iron Age </span>)).toBe(true);
+	expect(wrapper.containsMatchingElement(<span className="input-group-text"> period: Iron Age </span>)).toBe(true);
 });
 
 test('renders a signedYear prop of 0 as 0 AD iron age', () => {
@@ -33,12 +30,10 @@ test('renders a signedYear prop of 0 as 0 AD iron age', () => {
 
 	const inputElement = wrapper.find('input');
 	const selectElement = wrapper.find('select');
-	const periodSpan = wrapper.find('span#period');
 
 	expect(inputElement.prop('value')).toBe(0);
 	expect(selectElement.prop('value')).toBe("AD");
-	expect(periodSpan.exists()).toBe(true);
-	expect(wrapper.containsMatchingElement(<span id="period"> period: Iron Age </span>)).toBe(true);
+	expect(wrapper.containsMatchingElement(<span className="input-group-text"> period: Iron Age </span>)).toBe(true);
 });
 
 test('user entering 1066 as a year, when epoch is AD, results in onChange prop being called with 1066', () => {
