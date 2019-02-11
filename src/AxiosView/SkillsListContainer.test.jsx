@@ -1,3 +1,27 @@
+import React from 'react';
+import { mount } from 'enzyme';
+import MockAxios from './MockAxios';
+import SkillsListContainer from './SkillsListContainer';
+
+test('calls Axios once when mounted', () => {
+	// set up the mock result
+	MockAxios.get.mockImplementationOnce(() =>
+		Promise.resolve({
+			data: { results: [mockJSON] }
+		})
+	);
+
+	// mount SkillsListCounter
+	const wrapper = mount(< SkillsListContainer />);
+
+	// in the component did mount a axios get will have been made 
+	const inputElement = wrapper.find('input');
+	const selectElement = wrapper.find('select');
+
+	expect(inputElement.prop('value')).toBe("");
+	expect(selectElement.prop('value')).toBe("AD");
+	expect(wrapper.containsMatchingElement(<span className="input-group-text"> period: </span>)).toBe(true);
+});
 
 
 const mockJSON = {

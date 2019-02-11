@@ -1,28 +1,66 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import PropTypes from 'prop-types';
+import ListCard from './ListCard.jsx'
 
-// A display only component for a list of Technologies 
+// A display only component for a list of Technologies. 
 //
-// The technolgies are provided by the prop skills which is an array of objects, where each object has two fields, called Technology and kind
+// The technologies are provided by the prop skills which is an array of objects, where each object has two fields, called Technology and kind.
 //
-// The technolgies of each kind are shown in a separate list
+// Each kind of technology is displayed in a separate list using the ListCard component.
 
-function SkillsListPresenter(props) {
-	if (props.errorMessage) {
-		return (
-			<p>
-				{props.errorMessage}
-			</p>
-		);
-	} else {
-		const listItems = props.skills.map((skill) =>
-			<li> {skill.Technology} </li>
-		)
-		return (
-			<ul>
-				{listItems}
-			</ul>
-		);
+class SkillsListPresenter extends PureComponent {
+
+	constructor(props) {
+		super(props);
+
+		let languages = [];
+		let databases = [];
+		let webFrameworks = [];
+		let guiFrameworks = [];
+		let designDiagrams = [];
+		for (let i = 0; i < this.props.skills.length; i++) {
+			switch (this.props.skills[i].kind) {
+				case 'Language': languages.push(props.skills[i].Technology); break;
+				case 'Database': databases.push(props.skills[i].Technology); break;
+				case 'Web Framework': webFrameworks.push(props.skills[i].Technology); break;
+				case 'GUI Framework': guiFrameworks.push(props.skills[i].Technology); break;
+				case 'Design': designDiagrams.push(props.skills[i].Technology); break;
+				default: ;
+			}
+		}
+
+		this.state = {
+			languages: languages,
+			databases: databases,
+			webFrameworks: webFrameworks,
+			guiFrameworks: guiFrameworks,
+			designDiagrams: designDiagrams
+		}
+	}
+
+	render() {
+		if (this.props.errorMessage) {
+			return (
+				<div className="card text-white bg-danger" >
+					<h5 className="card-title p-2">Error</h5>
+					<h5 className="card-text p-2"> {this.props.errorMessage} </h5>
+				</div>
+			);
+		} else {
+			return (
+				<>
+					<div className="row card-deck">
+						<ListCard title="Languages" names={this.state.languages}></ListCard>
+						<ListCard title="Web Frameworks" names={this.state.webFrameworks}></ListCard>
+						<ListCard title="GUI Frameworks" names={this.state.guiFrameworks}></ListCard>
+					</div>
+					<div className="row card-deck">
+						<ListCard title="Databases" names={this.state.databases}></ListCard>
+						<ListCard title="Design Diagrams" names={this.state.designDiagrams}></ListCard>
+					</div>
+				</>
+			)
+		}
 	}
 }
 

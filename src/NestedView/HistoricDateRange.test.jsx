@@ -83,19 +83,17 @@ test('renders default props as two empty years with epoch of AD', () => {
 
 	const fromInputElement = fromHistoricYear.find('input');
 	const fromSelectElement = fromHistoricYear.find('select');
-	const fromPeriodSpan = fromHistoricYear.find('span#period');
 
 	expect(fromInputElement.prop('value')).toBe("");
 	expect(fromSelectElement.prop('value')).toBe("AD");
-	expect(fromPeriodSpan.exists()).toBe(false);
+	expect(fromHistoricYear.containsMatchingElement(<span className="input-group-text"> period: </span>)).toBe(true);
 
 	const toInputElement = toHistoricYear.find('input');
 	const toSelectElement = toHistoricYear.find('select');
-	const toPeriodSpan = toHistoricYear.find('span#period');
 
 	expect(toInputElement.prop('value')).toBe("");
 	expect(toSelectElement.prop('value')).toBe("AD");
-	expect(toPeriodSpan.exists()).toBe(false);
+	expect(fromHistoricYear.containsMatchingElement(<span className="input-group-text"> period: </span>)).toBe(true);
 
 	wrapper.unmount();
 });
@@ -111,14 +109,14 @@ test('renders range -50 to 175 as 50 BC Iron Age to 175 AD Roman', () => {
 
 	expect(fromInputElement.prop('value')).toBe(50);
 	expect(fromSelectElement.prop('value')).toBe("BC");
-	expect(fromHistoricYear.containsMatchingElement(<span id="period"> period: Iron Age </span>)).toBe(true);
+	expect(fromHistoricYear.containsMatchingElement(<span className="input-group-text"> period: Iron Age </span>)).toBe(true);
 
 	const toInputElement = toHistoricYear.find('input');
 	const toSelectElement = toHistoricYear.find('select');
 
 	expect(toInputElement.prop('value')).toBe(175);
 	expect(toSelectElement.prop('value')).toBe("AD");
-	expect(toHistoricYear.containsMatchingElement(<span id="period"> period: Roman </span>)).toBe(true);
+	expect(toHistoricYear.containsMatchingElement(<span className="input-group-text"> period: Roman </span>)).toBe(true);
 
 	wrapper.unmount();
 });

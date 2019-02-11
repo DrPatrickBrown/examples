@@ -24,20 +24,20 @@ class NestedView extends Component {
 
 	render() {
 		return (
-			<>
-				<p>
-					This example is a parent component containing child components.
-				</p>
-
-				<p>
-					The parent component is called HistoricDateRange, and it contains two HistoricYear child components,
-					one for the 'from' year of the date range and the other for the 'to' year. <br />
-					When HistoricDateRange has a 'to' year that is earlier than the 'from' year it displays a warning.
-				</p>
-
-				<p>
-					HistoricDateRange has an onChange event prop which passes a newly input historic date range as an object containing a from year and a to year.
-				</p>
+			<div>
+				<div className="card bg-light p-2">
+					<h5 className="card-title"> An example React component with child components. </h5>
+					<p className="card-text">
+						Below is a component called HistoricDateRange that contains two HistoricYear child components,
+						one for the 'from' year of the date range and the other for the 'to' year.
+					</p>
+					<p className="card-text">
+						When HistoricDateRange has a 'to' year that is earlier than the 'from' year it displays a warning.
+					</p>
+					<p className="card-text">
+						HistoricDateRange has an onChange event prop which passes a newly input historic date range as an object containing a from year and a to year.
+					</p>
+				</div>
 
 				<div>
 					<HistoricDateRange onChange={this.changeHandler}></HistoricDateRange>
@@ -50,7 +50,7 @@ class NestedView extends Component {
 					{this.state.range === null ? null : this.rangeToString()}
 				</div>
 
-			</>
+			</div>
 		);
 	}
 }
