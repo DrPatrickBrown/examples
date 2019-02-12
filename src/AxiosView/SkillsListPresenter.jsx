@@ -43,20 +43,20 @@ class SkillsListPresenter extends PureComponent {
 			return (
 				<div className="card text-white bg-danger" >
 					<h5 className="card-title p-2">Error</h5>
-					<h5 className="card-text p-2"> {this.props.errorMessage} </h5>
+					<h5 className="card-text p-2">{this.props.errorMessage}</h5>
 				</div>
 			);
 		} else {
 			return (
 				<>
 					<div className="row card-deck">
-						<ListCard title="Languages" names={this.state.languages}></ListCard>
-						<ListCard title="Web Frameworks" names={this.state.webFrameworks}></ListCard>
-						<ListCard title="GUI Frameworks" names={this.state.guiFrameworks}></ListCard>
+						<ListCard id="LanguagesCard" title="Languages" names={this.state.languages}></ListCard>
+						<ListCard id="WebCard" title="Web Frameworks" names={this.state.webFrameworks}></ListCard>
+						<ListCard id="GuiCard" title="GUI Frameworks" names={this.state.guiFrameworks}></ListCard>
 					</div>
 					<div className="row card-deck">
-						<ListCard title="Databases" names={this.state.databases}></ListCard>
-						<ListCard title="Design Diagrams" names={this.state.designDiagrams}></ListCard>
+						<ListCard id="DatabasesCard" title="Databases" names={this.state.databases}></ListCard>
+						<ListCard id="DiagramsCard" title="Design Diagrams" names={this.state.designDiagrams}></ListCard>
 					</div>
 				</>
 			)
@@ -65,7 +65,7 @@ class SkillsListPresenter extends PureComponent {
 }
 
 SkillsListPresenter.propTypes = {
-	skills: PropTypes.array.isRequired,
+	skills: PropTypes.array,
 	errorMessage: PropTypes.string
 }
 

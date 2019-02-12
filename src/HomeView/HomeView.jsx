@@ -21,7 +21,10 @@ class HomeView extends Component {
 					<a href="https://github.com/DrPatrickBrown/examples.git">my github repository</a>.
 				</p>
 				<p className="card-text p-2">
-					The tests are written with Jest and Enzyme.
+					The tests are written with Jest and Enzyme. They include shallow and fully rendered component tests, and API mocking.
+				</p>
+				<p className="card-text p-2">
+					Styling is with Bootstrap 4. The Axios example has a responsive layout based on the Bootstrap grid.
 				</p>
 			</div>
 		);
