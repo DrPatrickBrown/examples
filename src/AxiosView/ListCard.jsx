@@ -9,12 +9,12 @@ import PropTypes from 'prop-types';
 
 function ListCard(props) {
 	const listItems = props.names.map((name) =>
-		<li className="list-group-item"> {name} </li>
+		<li className="list-group-item">{name}</li>
 	)
 	return (
 		<div className="col-md-4">
 			<div className="card bg-light mb-2">
-				<h6 className="card-title p-2"> {props.title} </h6>
+				<h6 className="card-title p-2">{props.title}</h6>
 				<ul className="list-group list-group-flush">
 					{listItems}
 				</ul>
