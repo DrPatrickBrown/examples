@@ -15,7 +15,9 @@ class NestedView extends Component {
 	}
 
 	rangeToString = () => {
-		if (this.state.range.fromYear && this.state.range.toYear) {
+		let isFromYearPopulated = this.state.range.fromYear || (this.state.range.fromYear === 0);
+		let isToYearPopulated = this.state.range.toYear || (this.state.range.toYear === 0);
+		if (isFromYearPopulated && isToYearPopulated) {
 			return " " + this.state.range.fromYear + " to " + this.state.range.toYear;
 		} else {
 			return "";
